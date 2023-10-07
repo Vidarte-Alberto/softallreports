@@ -7,8 +7,7 @@ export default function Home() {
     <main>
       <div>
         <h1>SoftAllReports</h1>
-        <span>the First Develop</span>
-        <Button>Click me</Button>
+        <span>El mejor sistema de Reporteria de SoftRestaurant</span>
       </div>
     </main>
   );
