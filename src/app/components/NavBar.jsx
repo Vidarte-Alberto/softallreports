@@ -13,7 +13,7 @@ import {
 } from "@nextui-org/react";
 import { AcmeLogo } from "./AcmeLogo.jsx";
 
-export default function App() {
+export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const menuItems = ["Inicio", "Sobre Nosotros", "Contacto"];
@@ -26,8 +26,9 @@ export default function App() {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <AcmeLogo />
-          <p className="font-bold text-inherit">SoftAllReports</p>
+          <p className="font-bold text-inherit">
+            Soft<span className="text-blue-500">All</span>Reports
+          </p>
         </NavbarBrand>
       </NavbarContent>
 
