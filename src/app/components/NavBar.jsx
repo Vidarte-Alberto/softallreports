@@ -11,13 +11,19 @@ import {
   Link,
   Button,
 } from "@nextui-org/react";
-import { AcmeLogo } from "./AcmeLogo.jsx";
 
-export default function NavBar() {
+export default function NavBar({ currentPath }) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-  const menuItems = ["Inicio", "Sobre Nosotros", "Contacto"];
-  const menuLinks = ["/", "/about", "/contact"];
+  const menuItems = ["Inicio", "Soporte", "Contacto"];
+  const menuLinks = ["/", "/support", "/contact"];
+
+  // Estilos para el enlace activo
+  const activeLinkStyle = {
+    color: "#007bff", // Cambia el color según tus preferencias
+    fontWeight: "bold", // Cambia el estilo de fuente según tus preferencias
+  };
+
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
@@ -33,21 +39,17 @@ export default function NavBar() {
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>
-          <Link color="foreground" href="/">
-            Inicio
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="/about" aria-current="page">
-            Sobre Nosotros
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="/contact">
-            Contactanos
-          </Link>
-        </NavbarItem>
+        {menuItems.map((item, index) => (
+          <NavbarItem key={`${item}-${index}`}>
+            <Link
+              color={
+                currentPath === menuLinks[index] ? "primary" : "foreground"
+              }
+              href={menuLinks[index]}>
+              {item}
+            </Link>
+          </NavbarItem>
+        ))}
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
@@ -66,11 +68,7 @@ export default function NavBar() {
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
               color={
-                index === 2
-                  ? "primary"
-                  : index === menuItems.length - 1
-                  ? "danger"
-                  : "foreground"
+                currentPath === menuLinks[index] ? "primary" : "foreground"
               }
               className="w-full"
               href={menuLinks[index]}
